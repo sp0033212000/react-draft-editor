@@ -4,17 +4,14 @@
   "description": "This is a react wysiwyg library base on Draft.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sp0033212000/react-draft-editor"
+    "url": "git+https://github.com/sp0033212000/react-draft-editor.git"
   },
   "keywords": [
     "react",
     "wysiwyg"
   ],
   "license": "MIT",
-  "author": {
-    "name": "Wei Liao",
-    "email": "sp.weiliao@gmail.com"
-  },
+  "author": "Wei Liao <sp.weiliao@gmail.com>",
   "bugs": {
     "url": "https://github.com/sp0033212000/react-draft-editor"
   },
@@ -79,5 +76,9 @@
     "webpack": "^5.58.2",
     "webpack-cli": "^4.9.0",
     "webpack-node-externals": "^3.0.0"
+  },
+  "homepage": "https://github.com/sp0033212000/react-draft-editor#readme",
+  "directories": {
+    "lib": "lib"
   }
 }
