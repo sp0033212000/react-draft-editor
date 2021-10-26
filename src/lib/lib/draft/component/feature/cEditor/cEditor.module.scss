@@ -1,0 +1,35 @@
+.cEditor {
+  position: relative;
+  min-width: 100%;
+
+  &__container {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    min-height: 100%;
+    cursor: text;
+  }
+
+  &__fixed {
+    padding: 0.5rem;
+  }
+
+  &__primary-heading :global(.public-DraftEditorPlaceholder-root) {
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 2.875rem;
+  }
+  &__secondary-heading :global(.public-DraftEditorPlaceholder-root) {
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 2.125rem;
+  }
+  &__primary-body :global(.public-DraftEditorPlaceholder-root) {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+  &__secondary-body :global(.public-DraftEditorPlaceholder-root) {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+}

@@ -1,0 +1,37 @@
+.multiImage {
+  column-gap: 1.5rem;
+
+  &__contentBox {
+    flex: 1 1 0%;
+  }
+
+  &__image {
+    margin-bottom: 1rem;
+  }
+
+  &__textarea {
+    width: 100%;
+    text-align: center;
+    height: fit-content;
+    background-color: transparent;
+    resize: none;
+
+    &:focus {
+      outline: none;
+    }
+
+    &--title {
+      margin-bottom: 0.25rem;
+      font-size: 1.5rem;
+      font-weight: 500;
+      line-height: 2.1875rem;
+      color: #515151;
+    }
+
+    &--body {
+      color: #909090;
+      font-size: 1.125rem;
+      line-height: 1.625rem;
+    }
+  }
+}

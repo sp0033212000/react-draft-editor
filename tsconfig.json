@@ -1,0 +1,49 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
+    "allowJs": false,
+    "checkJs": false,
+    "declaration": true,
+    "noImplicitAny": false,
+    "strictNullChecks": true,
+    "noImplicitThis": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "noImplicitReturns": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react",
+    "sourceMap": true,
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules"
+      }
+    ]
+  },
+  "include": [
+    "./src/**/*.d.ts",
+    "./src/lib/types/custom.d.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  }
+}

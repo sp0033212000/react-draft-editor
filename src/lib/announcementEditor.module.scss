@@ -1,0 +1,37 @@
+.announcementEditor {
+  height: 100%;
+  min-height: 100%;
+  width: 49.5rem;
+  position: relative;
+
+  & > *:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+
+  &__functionalWrapper {
+    position: relative;
+
+    &--container {
+      position: absolute;
+      background-color: rgba(99, 99, 99, 1);
+      top: 0;
+      right: 0;
+      padding: 0.25rem;
+      transform: translateX(100%);
+      border-top-right-radius: 0.375rem;
+      border-bottom-right-radius: 0.375rem;
+    }
+
+    &--btn {
+      width: 1rem;
+      height: 1.5rem;
+      padding: 3.5px;
+    }
+
+    &--divider {
+      height: 1px;
+      width: 100%;
+      background-color: white;
+    }
+  }
+}
