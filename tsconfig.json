@@ -9,6 +9,7 @@
     "allowJs": false,
     "checkJs": false,
     "declaration": true,
+    "declarationDir": "./lib/@types",
     "noImplicitAny": false,
     "strictNullChecks": true,
     "noImplicitThis": false,
@@ -18,25 +19,29 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "allowUmdGlobalAccess": true,
     "suppressImplicitAnyIndexErrors": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "ESNext",
+    "module": "commonjs",
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
+    "noEmit": false,
     "jsx": "react",
     "sourceMap": true,
     "plugins": [
       {
         "name": "typescript-plugin-css-modules"
       }
+    ],
+    "types": [
+      "node"
     ]
   },
   "include": [
     "./src/**/*.d.ts",
-    "./src/lib/types/custom.d.ts"
+    "./src/types/custom.d.ts"
   ],
   "exclude": [
     "node_modules"

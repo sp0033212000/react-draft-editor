@@ -3,13 +3,13 @@ import path from "path";
 
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
-import CopyWebpackPlugin from "copy-webpack-plugin";
 import ForkTSCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import WebpackNodeExternals from "webpack-node-externals";
+import CopyWebpackPlugin from "copy-webpack-plugin";
 
 const WebpackConfig: Configuration = {
-  mode: "development",
-  entry: "./src/lib/index.tsx",
+  mode: "production",
+  entry: ["@babel/polyfill", "./src/index.tsx"],
   output: {
     path: path.resolve(__dirname, "lib"),
     filename: "index.js",
@@ -22,30 +22,19 @@ const WebpackConfig: Configuration = {
     rules: [
       {
         test: /\.tsx?$/,
-        exclude: "/node_modules",
-        use: [
-          {
-            loader: "babel-loader",
-            options: {
-              presets: [
-                "@babel/typescript",
-                "@babel/preset-react",
-                "@babel/preset-env",
-              ],
-            },
-          },
-        ],
+        exclude: /node_modules/,
+        use: [{ loader: "ts-loader" }],
       },
       {
-        test: /\.s?css$/i,
+        test: /\.(s?css)$/i,
+        exclude: /node_modules/,
         use: [
           MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
             options: {
-              sourceMap: true,
-              modules: true,
-              importLoaders: 2,
+              modules: /\.module\.\w+$/i,
+              import: false,
             },
           },
           {
@@ -56,12 +45,26 @@ const WebpackConfig: Configuration = {
               },
             },
           },
-          "sass-loader",
+          {
+            loader: "sass-loader",
+            options: {
+              sourceMap: true,
+              sassOptions: { outputStyle: "compressed" },
+            },
+          },
         ],
       },
       {
         test: /\.svg$/,
-        loader: "@svgr/webpack",
+        use: [
+          {
+            loader: "@svgr/webpack",
+            options: { exportType: "name" },
+          },
+          {
+            loader: "url-loader",
+          },
+        ],
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
@@ -79,30 +82,34 @@ const WebpackConfig: Configuration = {
   externalsPresets: { node: true },
   externals: [WebpackNodeExternals({ importType: "umd" })],
   devtool: "source-map",
-  // optimization: {
-  //   minimize: false,
-  // },
+  optimization: {
+    minimize: false,
+  },
   stats: {
     errorDetails: true,
   },
   resolve: {
     extensions: [".tsx", ".ts", ".js", ".scss"],
+    modules: ["node_modules"],
+    alias: {
+      "~": path.resolve("./node_modules"),
+    },
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "[name].module.css",
+      filename: "styles.css",
       chunkFilename: "[id].css",
     }),
-    new CleanWebpackPlugin(),
-    new ForkTSCheckerWebpackPlugin(),
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: "./src/lib/assets",
-          to: "./assets",
+          from: "./node_modules/draft-js/dist/Draft.css",
+          to: "./",
         },
       ],
     }),
+    new CleanWebpackPlugin(),
+    new ForkTSCheckerWebpackPlugin(),
   ],
 };
 
