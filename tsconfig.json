@@ -40,7 +40,7 @@
     ]
   },
   "include": [
-    "./src/**/*.d.ts",
+    "./src/types/global.d.ts",
     "./src/types/custom.d.ts"
   ],
   "exclude": [

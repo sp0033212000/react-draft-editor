@@ -23,7 +23,14 @@ const WebpackConfig: Configuration = {
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        use: [{ loader: "ts-loader" }],
+        use: [
+          {
+            loader: "ts-loader",
+            options: {
+              onlyCompileBundledFiles: true,
+            },
+          },
+        ],
       },
       {
         test: /\.(s?css)$/i,
