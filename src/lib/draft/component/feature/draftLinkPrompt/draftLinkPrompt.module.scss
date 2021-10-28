@@ -10,6 +10,10 @@
     border: 1px solid rgba(156, 163, 175, 1);
     border-radius: 0.75rem;
     padding: 0 1rem;
+
+    &[data-invalid='true'] {
+      border: 2px solid rgba(239, 68, 68, 1);
+    }
   }
 
   &__error {
@@ -39,7 +43,7 @@
   }
 
   &__btn {
-    flex: 1 1 0%;
+    flex: 1 1 0;
     height: 3rem;
     border-radius: 0.75rem;
     color: white;
