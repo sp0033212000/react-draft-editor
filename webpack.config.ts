@@ -14,6 +14,7 @@ const WebpackConfig: Configuration = {
     path: path.resolve(__dirname, "lib"),
     filename: "index.js",
     globalObject: "this",
+    publicPath: "./",
     library: {
       name: "DraftEditor",
       type: "umd",
