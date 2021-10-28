@@ -14,6 +14,10 @@
     &[data-invalid='true'] {
       border: 2px solid rgba(239, 68, 68, 1);
     }
+
+    &:focus[data-invalid='true'] {
+      border: 2px solid rgba(239, 68, 68, 1);
+    }
   }
 
   &__error {
