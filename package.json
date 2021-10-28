@@ -1,6 +1,6 @@
 {
   "name": "@sp0033212000/react-draft-editor",
-  "version": "0.0.36",
+  "version": "0.0.37",
   "description": "This is a react wysiwyg library base on Draft.js",
   "repository": {
     "type": "git",
@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/sp0033212000/react-draft-editor"
   },
-  "main": "/lib/index.js",
+  "main": "./lib/index.js",
   "module": "./lib/index.js",
   "types": "./lib/@types/index.d.ts",
   "files": [
