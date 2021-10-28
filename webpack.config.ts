@@ -15,7 +15,6 @@ const WebpackConfig: Configuration = {
     filename: "index.js",
     globalObject: "this",
     publicPath: "./",
-    assetModuleFilename: "assets/images/[hash][ext][query]",
     library: {
       name: "DraftEditor",
       type: "umd",
@@ -78,15 +77,7 @@ const WebpackConfig: Configuration = {
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
-        type: "asset/resource",
-        // use: [
-        //   {
-        //     loader: "url-loader",
-        //     options: {
-        //       name: "assets/[folder]/[name].[ext]",
-        //     },
-        //   },
-        // ],
+        type: "asset/inline",
       },
     ],
   },
