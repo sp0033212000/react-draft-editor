@@ -1,29 +1,35 @@
-.draft-align-left div {
+:global(.draft-align-left) div {
   text-align: left;
 }
-.draft-align-center div {
+
+:global(.draft-align-center) div {
   text-align: center;
 }
-.draft-align-right div {
+
+:global(.draft-align-right) div {
   text-align: right;
 }
-.draft-primary-heading > * {
+
+:global(.draft-primary-heading) > * {
   font-size: 2rem;
   font-weight: 500;
   color: #333333;
   line-height: 2.875rem;
 }
-.draft-secondary-heading > * {
+
+:global(.draft-secondary-heading) > * {
   font-size: 1.5rem;
   font-weight: 500;
   color: #333333;
   line-height: 2.125rem;
 }
-.draft-primary-body > * {
+
+:global(.draft-primary-body) > * {
   font-size: 1.125rem;
   line-height: 1.75rem;
 }
-.draft-secondary-body > * {
+
+:global(.draft-secondary-body) > * {
   font-size: 1.125rem;
   line-height: 1.75rem;
 }
