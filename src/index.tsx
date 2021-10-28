@@ -10,8 +10,8 @@ export { default as CEditor } from "./lib/draft/component/feature/cEditor/cEdito
 export { default } from "./announcementEditor";
 
 export * from "./utils";
-export * from "./hooks/useInteractiveOutsideTargetHandler";
-export * from "./hooks/useAsyncPrompt";
+export * as useInteractiveOutsideTargetHandler from "./hooks/useInteractiveOutsideTargetHandler";
+export * as useAsyncPrompt from "./hooks/useAsyncPrompt";
 
 export type {
   AnnouncementEditorDataUnity,
