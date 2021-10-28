@@ -7,7 +7,7 @@ type Rejecter<V extends any> =
   | ((...arg: V extends undefined ? [undefined] : [V]) => void)
   | null;
 
-export const useAsyncPrompt = <
+const useAsyncPrompt = <
   ResolveValue extends any,
   RejectValue extends any = ResolveValue
 >() => {
