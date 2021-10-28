@@ -79,7 +79,7 @@ const WebpackConfig: Configuration = {
         test: /\.(png|jpe?g|gif)$/i,
         use: [
           {
-            loader: "file-loader",
+            loader: "url-loader",
             options: {
               name: "assets/[folder]/[name].[ext]",
             },
