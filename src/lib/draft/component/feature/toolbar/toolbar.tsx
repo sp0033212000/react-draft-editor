@@ -286,6 +286,7 @@ const ColorPicker: React.FC<{ colorHandler: (color: string) => void }> = ({
   const { position } = useGetBounding(ref.current, pickerRef.current, {
     disable: !isOpen,
     trackingDependencies: [isOpen],
+    targetHeightMode: "scroll",
   });
 
   return (
@@ -353,6 +354,7 @@ const TextAlignmentPicker: React.FC<{
   const { position } = useGetBounding(ref.current, pickerRef.current, {
     disable: !isOpen,
     trackingDependencies: [isOpen],
+    targetHeightMode: "scroll",
   });
 
   return (
