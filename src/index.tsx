@@ -33,3 +33,5 @@ export type {
   UseUploadFiles,
   useTranslationInterface,
 } from "./types/editor";
+
+export type EditorMode = "editor" | "viewer";
