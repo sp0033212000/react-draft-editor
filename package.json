@@ -1,6 +1,6 @@
 {
   "name": "@sp0033212000/react-draft-editor",
-  "version": "0.0.46",
+  "version": "0.0.47",
   "description": "This is a react wysiwyg library base on Draft.js",
   "repository": {
     "type": "git",
