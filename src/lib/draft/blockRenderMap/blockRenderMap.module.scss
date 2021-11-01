@@ -1,0 +1,98 @@
+.draft-list {
+  padding-left: 1.125rem;
+
+  & > * {
+    display: flex;
+    align-items: flex-start;
+    word-break: break-all;
+  }
+
+  &:first-child {
+    margin-top: 0;
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
+  &:not(:first-child) {
+    margin-top: 1rem;
+  }
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
+  :global(.public-DraftStyleDefault-depth0.public-DraftStyleDefault-listLTR) {
+    margin-left: 1.125rem;
+  }
+
+  :global(.public-DraftStyleDefault-depth1.public-DraftStyleDefault-listLTR) {
+    margin-left: 2.625rem;
+  }
+
+  :global(.public-DraftStyleDefault-depth2.public-DraftStyleDefault-listLTR) {
+    margin-left: 3.375rem;
+  }
+
+  :global(.public-DraftStyleDefault-depth3.public-DraftStyleDefault-listLTR) {
+    margin-left: 4.5rem;
+  }
+
+  :global(.public-DraftStyleDefault-depth4.public-DraftStyleDefault-listLTR) {
+    margin-left: 5.625em;
+  }
+
+  &__un-order {
+    & > * {
+      list-style-type: none !important;
+      //margin-left: 0 !important;
+      font-size: 1.125rem;
+      line-height: 1.75rem;
+      &::before {
+        display: block;
+        width: 1.125rem;
+        text-align: center;
+        font-size: 1rem;
+        margin-right: 0.25rem;
+      }
+
+      &:global(.public-DraftStyleDefault-depth0.public-DraftStyleDefault-listLTR) {
+        &::before {
+          content: '\2022';
+        }
+      }
+      &:global(.public-DraftStyleDefault-depth1.public-DraftStyleDefault-listLTR) {
+        &::before {
+          content: '\25B4';
+        }
+      }
+      &:global(.public-DraftStyleDefault-depth2.public-DraftStyleDefault-listLTR) {
+        &::before {
+          content: '\2B25';
+        }
+      }
+      &:global(.public-DraftStyleDefault-depth3.public-DraftStyleDefault-listLTR) {
+        &::before {
+          content: '\2B26';
+        }
+      }
+      &:global(.public-DraftStyleDefault-depth4.public-DraftStyleDefault-listLTR) {
+        &::before {
+          content: '\25A1';
+        }
+      }
+    }
+  }
+
+  &__order > * {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    &::before {
+      position: relative !important;
+      min-width: 1.125rem !important;
+      left: 0 !important;
+      text-align: center !important;
+      margin-right: 0.25rem;
+      width: max-content !important;
+      white-space: nowrap;
+    }
+  }
+}

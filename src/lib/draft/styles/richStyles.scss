@@ -1,0 +1,35 @@
+:global(.draft-align-left) div {
+  text-align: left;
+}
+
+:global(.draft-align-center) div {
+  text-align: center;
+}
+
+:global(.draft-align-right) div {
+  text-align: right;
+}
+
+:global(.draft-primary-heading) > * {
+  font-size: 2rem;
+  font-weight: 500;
+  color: #333333;
+  line-height: 2.875rem;
+}
+
+:global(.draft-secondary-heading) > * {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #333333;
+  line-height: 2.125rem;
+}
+
+:global(.draft-primary-body) > * {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+:global(.draft-secondary-body) > * {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
