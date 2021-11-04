@@ -68,18 +68,7 @@ const AttachmentSection: React.FC<Props> = ({
 
   const plugin = useUploadFiles?.({
     callback: fileUploadHandler,
-    allowTypes: [
-      ".csv",
-      "text/csv",
-      "text/comma-separated-values",
-      "application/csv",
-      "application/excel",
-      "application/vnd.ms-excel",
-      "application/vnd.msexcel",
-      "text/anytext",
-      "application/vnd.ms-excel",
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    ],
+    allowTypes: ["*"],
     isMultiple: true,
     isNeedValidate: true,
     errorFeedback: uploadFilesErrorFeedback,
