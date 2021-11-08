@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import style from './cEditor.module.scss'
-import '../../../styles/richStyles.scss'
+import '../../../styles/richStyles.module.scss'
 
 import classNames from 'classnames'
 import {
