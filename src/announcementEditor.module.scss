@@ -1,7 +1,8 @@
 .announcementEditor {
   height: 100%;
+  width: 100%;
   min-height: 100%;
-  width: 49.5rem;
+  max-width: 49.5rem;
   position: relative;
 
   & > *:not(:last-child) {
@@ -34,4 +35,13 @@
       background-color: white;
     }
   }
+}
+
+@media screen and (max-width: 1366px) {
+  .announcementEditor {
+    max-width: none;
+  }
+}
+
+@media screen and(max-width: 1024px) {
 }
