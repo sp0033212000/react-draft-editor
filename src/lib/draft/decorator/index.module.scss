@@ -1,5 +1,8 @@
 .draft-link {
-  &:hover * {
+  color: #16C0C0;
+  text-decoration: underline;
+
+  &:hover, &:hover * {
     color: #f43030;
   }
 }

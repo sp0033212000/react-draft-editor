@@ -24,7 +24,6 @@ const DraftLink: React.FC<{ contentState: ContentState; entityKey: string }> =
       <a
         href={url}
         className={styles["draft-link"]}
-        style={{ color: "#16C0C0", textDecoration: "underline" }}
         title={url}
         rel={"noreferrer noopener"}
         target={"_blank"}
