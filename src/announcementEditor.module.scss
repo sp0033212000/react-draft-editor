@@ -1,9 +1,10 @@
 .announcementEditor {
+  position: relative;
   height: 100%;
   width: 100%;
   min-height: 100%;
   max-width: 49.5rem;
-  position: relative;
+  margin: 0 auto;
 
   & > *:not(:last-child) {
     margin-bottom: 28px;
