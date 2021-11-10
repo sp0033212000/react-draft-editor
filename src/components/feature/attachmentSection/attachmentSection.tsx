@@ -84,13 +84,12 @@ const AttachmentSection: React.FC<Props> = ({
       aria-readonly={readOnly}
       className={classNames(style['attachmentSection'])}
     >
-      {files.length !== 0 && (
-        <Fragment condition={readOnly}>
-          <h1 className={classNames(style['attachmentSection__header__title'])}>
-            {langPlugin?.t(`share.download-title`) || '附件下載'}
-          </h1>
-        </Fragment>
-      )}
+      <Fragment condition={readOnly && files.length !== 0}>
+        <h1 className={classNames(style['attachmentSection__header__title'])}>
+          {langPlugin?.t(`share.download-title`) || '附件下載'}
+        </h1>
+      </Fragment>
+
       <Flexbox
         condition={!readOnly}
         justify={'between'}
