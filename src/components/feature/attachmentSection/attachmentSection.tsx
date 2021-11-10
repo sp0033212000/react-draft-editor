@@ -1,32 +1,32 @@
-import React, { useCallback } from 'react'
-import classNames from 'classnames'
-import style from './attachmentSection.module.scss'
+import React, { useCallback } from "react";
+import classNames from "classnames";
+import style from "./attachmentSection.module.scss";
 
-import { isNotEmptyArray, isNotSet, isSet, isTrue } from '../../../utils'
+import { isNotEmptyArray, isNotSet, isSet, isTrue } from "../../../utils";
 
-import { ReactComponent as UploadIcon } from '../../../assets/icons/upload_square.svg'
-import { ReactComponent as TimesIcon } from '../../../assets/icons/akar-icons_cross.svg'
-import Flexbox from '../../common/flexbox'
+import { ReactComponent as UploadIcon } from "../../../assets/icons/upload_square.svg";
+import { ReactComponent as TimesIcon } from "../../../assets/icons/akar-icons_cross.svg";
+import Flexbox from "../../common/flexbox";
 import {
   AttachmentContentData,
   EditorMode,
   FileUploader,
   UseUploadFiles,
-} from '../../../'
-import Fragment from '../../common/fragment'
-import { useTranslationInterface } from '../../../index'
+} from "../../../";
+import Fragment from "../../common/fragment";
+import { useTranslationInterface } from "../../../index";
 
 interface Props {
-  files: Array<AttachmentContentData> | null
-  onChange?: (data: Props['files']) => void
-  fileUploader: FileUploader | undefined
-  useUploadFiles: UseUploadFiles | undefined
-  readOnly?: boolean
-  useTranslation?: useTranslationInterface
-  mode?: EditorMode
+  files: Array<AttachmentContentData> | null;
+  onChange?: (data: Props["files"]) => void;
+  fileUploader: FileUploader | undefined;
+  useUploadFiles: UseUploadFiles | undefined;
+  readOnly?: boolean;
+  useTranslation?: useTranslationInterface;
+  mode?: EditorMode;
   uploadFilesErrorFeedback:
     | undefined
-    | ((error: { title: string; content: string }) => void)
+    | ((error: { title: string; content: string }) => void);
 }
 
 const AttachmentSection: React.FC<Props> = ({
@@ -39,65 +39,65 @@ const AttachmentSection: React.FC<Props> = ({
   uploadFilesErrorFeedback,
   mode,
 }) => {
-  const langPlugin = useTranslation?.()
+  const langPlugin = useTranslation?.();
 
   const removeHandler: React.MouseEventHandler<HTMLButtonElement> = (event) => {
-    if (isNotSet(onChange)) return
+    if (isNotSet(onChange)) return;
 
-    const targetIndex = Number(event.currentTarget.getAttribute('data-index'))
-    if (isNotSet(targetIndex) || isNaN(targetIndex)) return
-    if (isNotSet(files)) return
-    onChange(files.filter((_, index) => index !== targetIndex))
-  }
+    const targetIndex = Number(event.currentTarget.getAttribute("data-index"));
+    if (isNotSet(targetIndex) || isNaN(targetIndex)) return;
+    if (isNotSet(files)) return;
+    onChange(files.filter((_, index) => index !== targetIndex));
+  };
 
   const fileUploadHandler = useCallback(
     async (attach: File[]) => {
-      if (isNotSet(onChange)) return
-      if (isNotSet(fileUploader) || isNotSet(plugin)) return
-      const result = await fileUploader(attach)
+      if (isNotSet(onChange)) return;
+      if (isNotSet(fileUploader) || isNotSet(plugin)) return;
+      const result = await fileUploader(attach);
       if (isSet(result) && isNotEmptyArray(result)) {
         const allFile = result.map<AttachmentContentData>(
           ({ fileName, filePath }) => ({
             attachName: fileName,
             attachUrl: filePath,
           })
-        )
-        onChange([...(files || []), ...allFile])
+        );
+        onChange([...(files || []), ...allFile]);
       }
     },
     [onChange, files]
-  )
+  );
 
   const plugin = useUploadFiles?.({
     callback: fileUploadHandler,
-    allowTypes: ['*'],
+    allowTypes: ["*"],
     isMultiple: true,
     isNeedValidate: true,
     errorFeedback: uploadFilesErrorFeedback,
     disableErrorToast: true,
-  })
+  });
 
-  if (isNotSet(files)) return null
+  if (isNotSet(files)) return null;
 
   return (
     <div
       aria-readonly={readOnly}
-      className={classNames(style['attachmentSection'])}
+      className={classNames(style["attachmentSection"])}
     >
-      {readOnly && (
-        <h1 className={classNames(style['attachmentSection__header__title'])}>
-          {langPlugin?.t(`share.download-title`) || '附件下載'}
+      <Fragment condition={readOnly}>
+        <h1 className={classNames(style["attachmentSection__header__title"])}>
+          {langPlugin?.t(`share.download-title`) || "附件下載"}
         </h1>
-      )}
+      </Fragment>
       <Flexbox
         condition={!readOnly}
-        justify={'between'}
-        className={classNames(style['attachmentSection__header'])}
+        justify={"between"}
+        className={classNames(style["attachmentSection__header"])}
       >
         <p>文章附件</p>
         <button
           onClick={plugin?.createFileInput}
-          className={classNames(style['attachmentSection__uploadBtn'])}
+          className={classNames(style["attachmentSection__uploadBtn"])}
         >
           <UploadIcon />
           上傳附件
@@ -105,7 +105,7 @@ const AttachmentSection: React.FC<Props> = ({
       </Flexbox>
       <div
         aria-readonly={readOnly}
-        className={classNames(style['attachmentSection__content'])}
+        className={classNames(style["attachmentSection__content"])}
       >
         {files?.map((file, index) => (
           <AttachmentItem
@@ -121,18 +121,18 @@ const AttachmentSection: React.FC<Props> = ({
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AttachmentSection
+export default AttachmentSection;
 
 const AttachmentItem: React.FC<
-  NonNullable<Props['files']>[number] & {
-    index: number
-    removeHandler: React.MouseEventHandler<HTMLButtonElement>
-    readOnly?: boolean
-    useTranslation?: useTranslationInterface
-    mode?: EditorMode
+  NonNullable<Props["files"]>[number] & {
+    index: number;
+    removeHandler: React.MouseEventHandler<HTMLButtonElement>;
+    readOnly?: boolean;
+    useTranslation?: useTranslationInterface;
+    mode?: EditorMode;
   }
 > = ({
   index,
@@ -143,20 +143,20 @@ const AttachmentItem: React.FC<
   useTranslation,
   mode,
 }) => {
-  const langPlugin = useTranslation?.()
-  const isEditor = mode === 'editor'
+  const langPlugin = useTranslation?.();
+  const isEditor = mode === "editor";
 
   return (
     <Flexbox
-      justify={'start'}
-      align={'baseline'}
-      className={classNames(style['attachmentSection__attach'])}
+      justify={"start"}
+      align={"baseline"}
+      className={classNames(style["attachmentSection__attach"])}
     >
       <Fragment condition={!readOnly}>
         <button
           data-index={index}
           onClick={removeHandler}
-          className={classNames(style['attachmentSection__removeBtn'])}
+          className={classNames(style["attachmentSection__removeBtn"])}
         >
           <TimesIcon />
         </button>
@@ -164,14 +164,14 @@ const AttachmentItem: React.FC<
       <p>{attachName}</p>
       <Fragment condition={isTrue(readOnly) && !isEditor}>
         <a
-          className={classNames(style['attachmentSection__download'])}
+          className={classNames(style["attachmentSection__download"])}
           href={attachUrl}
-          target={'_blank'}
-          rel={'noreferrer noopener'}
+          target={"_blank"}
+          rel={"noreferrer noopener"}
         >
-          {langPlugin?.t(`share.download`) || '下載'}
+          {langPlugin?.t(`share.download`) || "下載"}
         </a>
       </Fragment>
     </Flexbox>
-  )
-}
+  );
+};

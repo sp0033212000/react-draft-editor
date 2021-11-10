@@ -1,8 +1,8 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
-import style from './cEditor.module.scss'
-import '../../../styles/richStyles.module.scss'
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import style from "./cEditor.module.scss";
+import "../../../styles/richStyles.module.scss";
 
-import classNames from 'classnames'
+import classNames from "classnames";
 import {
   convertFromRaw,
   DraftBlockType,
@@ -12,104 +12,107 @@ import {
   genKey,
   getDefaultKeyBinding,
   RichUtils,
-} from 'draft-js'
+} from "draft-js";
 
-import { decorator } from '../../../decorator'
-import useInteractiveOutsideTargetHandler from '../../../../../hooks/useInteractiveOutsideTargetHandler'
-import { customStyleMap, getBlockStyle } from '../../../inlineStyle/inlineStyle'
-import { convertEditorStateToServerData, isNotSet } from '../../../../../utils'
-import Toolbar from '../toolbar'
-import blockRenderMap from '../../../blockRenderMap'
+import { decorator } from "../../../decorator";
+import useInteractiveOutsideTargetHandler from "../../../../../hooks/useInteractiveOutsideTargetHandler";
+import {
+  customStyleMap,
+  getBlockStyle,
+} from "../../../inlineStyle/inlineStyle";
+import { convertEditorStateToServerData, isNotSet } from "../../../../../utils";
+import Toolbar from "../toolbar";
+import blockRenderMap from "../../../blockRenderMap";
 
 const DEFAULT_PRIMARY_HEADING_CONTENT = convertFromRaw({
   blocks: [
     {
       key: genKey(),
-      type: 'primary-heading',
+      type: "primary-heading",
       depth: 0,
-      text: '',
+      text: "",
       inlineStyleRanges: [],
       entityRanges: [],
     },
   ],
   entityMap: {},
-})
+});
 
 const DEFAULT_SECONDARY_HEADING_CONTENT = convertFromRaw({
   blocks: [
     {
       key: genKey(),
-      type: 'secondary-heading',
+      type: "secondary-heading",
       depth: 0,
-      text: '',
+      text: "",
       inlineStyleRanges: [],
       entityRanges: [],
     },
   ],
   entityMap: {},
-})
+});
 
 const DEFAULT_PRIMARY_BODY_CONTENT = convertFromRaw({
   blocks: [
     {
       key: genKey(),
-      type: 'primary-body',
+      type: "primary-body",
       depth: 0,
-      text: '',
+      text: "",
       inlineStyleRanges: [],
       entityRanges: [],
     },
   ],
   entityMap: {},
-})
+});
 
 const DEFAULT_SECONDARY_BODY_CONTENT = convertFromRaw({
   blocks: [
     {
       key: genKey(),
-      type: 'secondary-body',
+      type: "secondary-body",
       depth: 0,
-      text: '',
+      text: "",
       inlineStyleRanges: [],
       entityRanges: [],
     },
   ],
   entityMap: {},
-})
+});
 
 export type EditorDefaultStyleType =
-  | 'primary-heading'
-  | 'secondary-heading'
-  | 'primary-body'
-  | 'secondary-body'
-export type EditorBlockType = DraftBlockType | EditorDefaultStyleType
+  | "primary-heading"
+  | "secondary-heading"
+  | "primary-body"
+  | "secondary-body";
+export type EditorBlockType = DraftBlockType | EditorDefaultStyleType;
 const STYLE_EDITOR_STATE: Record<EditorDefaultStyleType, EditorState> = {
-  'primary-heading': EditorState.createWithContent(
+  "primary-heading": EditorState.createWithContent(
     DEFAULT_PRIMARY_HEADING_CONTENT,
     decorator
   ),
-  'secondary-heading': EditorState.createWithContent(
+  "secondary-heading": EditorState.createWithContent(
     DEFAULT_SECONDARY_HEADING_CONTENT,
     decorator
   ),
-  'primary-body': EditorState.createWithContent(
+  "primary-body": EditorState.createWithContent(
     DEFAULT_PRIMARY_BODY_CONTENT,
     decorator
   ),
-  'secondary-body': EditorState.createWithContent(
+  "secondary-body": EditorState.createWithContent(
     DEFAULT_SECONDARY_BODY_CONTENT,
     decorator
   ),
-}
+};
 
 interface Props {
-  styleType: EditorDefaultStyleType
-  editorState: EditorState | null
-  setEditorState: (editorState: EditorState) => void
-  readOnly?: boolean
-  fixedToolbar?: boolean
-  containerClassName?: string
-  editorClassName?: string
+  styleType: EditorDefaultStyleType;
+  editorState: EditorState | null;
+  setEditorState: (editorState: EditorState) => void;
+  readOnly?: boolean;
+  fixedToolbar?: boolean;
+  containerClassName?: string;
+  editorClassName?: string;
 }
 
 const CEditor: React.FC<Props> = ({
@@ -121,60 +124,60 @@ const CEditor: React.FC<Props> = ({
   containerClassName,
   editorClassName,
 }) => {
-  const [focusing, setFocusing] = useState<boolean>(false)
-  const [promptRef, setPromptRef] = useState<HTMLDivElement | null>(null)
-  const draftRef = useRef<Editor>(null)
-  const containerRef = useRef<HTMLDivElement>(null)
+  const [focusing, setFocusing] = useState<boolean>(false);
+  const [promptRef, setPromptRef] = useState<HTMLDivElement | null>(null);
+  const draftRef = useRef<Editor>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const rawEditorDataString = editorState
     ? JSON.stringify(convertEditorStateToServerData(editorState))
-    : null
+    : null;
 
   useInteractiveOutsideTargetHandler(
     containerRef.current,
     () => setFocusing(false),
     [promptRef]
-  )
+  );
 
   useEffect(() => {
     if (isNotSet(editorState)) {
-      setEditorState(STYLE_EDITOR_STATE[styleType])
+      setEditorState(STYLE_EDITOR_STATE[styleType]);
     }
-  }, [editorState])
+  }, [editorState]);
 
   useEffect(() => {
-    focusElement()
-  }, [rawEditorDataString])
+    focusElement();
+  }, [rawEditorDataString]);
 
   const focusElement = useCallback(() => {
-    const parentElement = window.getSelection()?.focusNode?.parentElement
-    if (isNotSet(parentElement)) return
-    parentElement.focus()
-  }, [])
+    const parentElement = window.getSelection()?.focusNode?.parentElement;
+    if (isNotSet(parentElement)) return;
+    parentElement.focus();
+  }, []);
 
   const focusEventHandler = () => {
-    if (isNotSet(draftRef.current)) return
-    draftRef.current.focus()
-    setFocusing(true)
-  }
+    if (isNotSet(draftRef.current)) return;
+    draftRef.current.focus();
+    setFocusing(true);
+  };
 
-  if (isNotSet(editorState)) return null
+  if (isNotSet(editorState)) return null;
 
   const keyBindingFn = (
     e: React.KeyboardEvent<{}>
   ): DraftEditorCommand | null => {
     //prevent cursor from selecting the next interactive element
-    if (e.key === 'Tab') {
-      e.preventDefault()
+    if (e.key === "Tab") {
+      e.preventDefault();
       // assign a constant for the new editorState
-      const newState = RichUtils.onTab(e, editorState, 1)
+      const newState = RichUtils.onTab(e, editorState, 1);
       // if a new editor state exists, set editor state to new state
       // and return 'handled', otherwise return 'not-handled
-      setEditorState(newState)
-      return null
+      setEditorState(newState);
+      return null;
     }
 
-    return getDefaultKeyBinding(e)
-  }
+    return getDefaultKeyBinding(e);
+  };
 
   // const handlePastedText: ComponentProps<typeof Editor>['handlePastedText'] = (
   //   _,
@@ -203,12 +206,12 @@ const CEditor: React.FC<Props> = ({
   return (
     <div
       ref={containerRef}
-      className={classNames(style['cEditor'], containerClassName)}
+      className={classNames(style["cEditor"], containerClassName)}
     >
       <div
         tabIndex={2}
         onFocus={focusEventHandler}
-        className={classNames(style['cEditor__container'], editorClassName)}
+        className={classNames(style["cEditor__container"], editorClassName)}
       >
         <Toolbar
           fixed={fixedToolbar}
@@ -222,7 +225,7 @@ const CEditor: React.FC<Props> = ({
         />
         <div
           className={classNames(
-            fixedToolbar && style['cEditor__fixed'],
+            fixedToolbar && style["cEditor__fixed"],
             style[`cEditor__${styleType}`]
           )}
         >
@@ -237,15 +240,15 @@ const CEditor: React.FC<Props> = ({
             blockRenderMap={blockRenderMap}
             keyBindingFn={keyBindingFn}
             // handlePastedText={handlePastedText}
-            placeholder={'請輸入內文'}
+            placeholder={"請輸入內文"}
           />
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CEditor
+export default CEditor;
 // export default React.memo(CEditor, (prev, next) => {
 //   const prevEditorState = prev.editorState
 //   const prevRawDataString = prevEditorState ? convertEditorStateToServerData(prevEditorState) : null
