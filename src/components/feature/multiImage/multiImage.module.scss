@@ -35,3 +35,32 @@
     }
   }
 }
+
+@media screen and(max-width: 768px) {
+  .multiImage {
+    flex-direction: column;
+
+    &__contentBox {
+      width: 100%;
+    }
+
+    &__contentBox:not(:last-child) {
+      margin-bottom: 1.25rem;
+    }
+
+    &__image {
+      margin-bottom: 0.5rem;
+    }
+
+    &__textarea {
+      &--title {
+        font-size: 1.25rem;
+        line-height: 2.125rem;
+      }
+
+      &--body {
+        font-size: 1rem;
+      }
+    }
+  }
+}

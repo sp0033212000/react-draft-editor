@@ -28,10 +28,32 @@
   &:global(.draft-primary-body) > * {
     font-size: 1.125rem;
     line-height: 1.75rem;
+    color: #515151;
   }
 
   &:global(.draft-secondary-body) > * {
     font-size: 1.125rem;
     line-height: 1.75rem;
+    color: ＃;
+  }
+
+  @media screen and(max-width: 768px) {
+    &:global(.draft-primary-heading) > * {
+      font-size: 1.625rem;
+      line-height: 38px;
+    }
+
+    &:global(.draft-secondary-heading) > * {
+      font-size: 1.25rem;
+      line-height: 2.125rem;
+    }
+
+    &:global(.draft-primary-body) > * {
+      font-size: 1rem;
+    }
+
+    &:global(.draft-secondary-body) > * {
+      font-size: 1rem;
+    }
   }
 }

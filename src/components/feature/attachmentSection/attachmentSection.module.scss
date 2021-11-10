@@ -1,15 +1,23 @@
 .attachmentSection {
   width: 100%;
   border-radius: 0.75rem;
-  background-color: #FBFBFB;
+  background-color: #fbfbfb;
 
   &[aria-readonly='true'] {
     border-radius: 0;
+    background-color: #fff;
   }
 
   &__header {
     padding: 1rem;
     border-bottom: 1px solid rgba(194, 194, 194, 1);
+    &__title {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #333333;
+      line-height: 2.125rem;
+      margin-bottom: 28px;
+    }
   }
 
   &__uploadBtn {
@@ -23,6 +31,7 @@
 
     &[aria-readonly='true'] {
       padding: 0;
+      background-color: #fbfbfb;
     }
   }
 
@@ -38,10 +47,18 @@
 
   &__attach {
     padding: 1.125rem 1.5rem;
+
+    &[aria-readonly='true'] {
+      align-items: flex-start;
+    }
+
     & > p {
       font-size: 1.125rem;
       line-height: 1.75rem;
       color: #515151;
+      flex: 1;
+      padding-right: 0.75rem;
+      word-break: break-word;
     }
   }
 
@@ -67,6 +84,24 @@
 
     &:active {
       background: #c62829;
+    }
+  }
+}
+
+@media screen and(max-width: 768px) {
+  .attachmentSection {
+    &__header {
+      &__title {
+        font-size: 1.25rem;
+        line-height: 2.125rem;
+        margin-bottom: 24px;
+      }
+    }
+
+    &__attach {
+      & > p {
+        font-size: 1rem;
+      }
     }
   }
 }

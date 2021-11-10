@@ -96,3 +96,23 @@
     }
   }
 }
+
+@media screen and(max-width: 768px) {
+  .draft-list {
+    &:not(:first-child) {
+      margin-top: 12px;
+    }
+    &:not(:last-child) {
+      margin-bottom: 12px;
+    }
+
+    :global(.public-DraftStyleDefault-depth0.public-DraftStyleDefault-listLTR) {
+      margin-left: 12px;
+    }
+
+    &__order > * {
+      font-size: 1rem;
+      line-height: 28px;
+    }
+  }
+}
