@@ -89,7 +89,6 @@ const AttachmentSection: React.FC<Props> = ({
           {langPlugin?.t(`share.download-title`) || '附件下載'}
         </h1>
       </Fragment>
-
       <Flexbox
         condition={!readOnly}
         justify={'between'}
