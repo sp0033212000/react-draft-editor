@@ -70,56 +70,56 @@ export const styleMap: DraftStyleMap = {}
 
 export const colorMap: DraftStyleMap = {
   PRIMARY_RED_1: {
-    color: '#DF3232' // EWC Red
+    color: '#DF3232', // EWC Red
   },
   PRIMARY_RED_2: {
-    color: '#C62829' // EWC Red2
+    color: '#C62829', // EWC Red2
   },
   PRIMARY_RED_3: {
-    color: '#F3BBBB' // EWC Red3
+    color: '#F3BBBB', // EWC Red3
   },
   PRIMARY_RED_4: {
-    color: '#FFF4F4' // EWC Lavenderblush
+    color: '#FFF4F4', // EWC Lavenderblush
   },
   SECONDARY_GREEN_1: {
-    color: '#16C0C0' // EWC Green
+    color: '#16C0C0', // EWC Green
   },
   SECONDARY_GREEN_2: {
-    color: '#0FA0A0' // EWC Green2
+    color: '#0FA0A0', // EWC Green2
   },
   SECONDARY_GREEN_3: {
-    color: '#7FDCDC' // EWC Green3
+    color: '#7FDCDC', // EWC Green3
   },
   SECONDARY_GREEN_4: {
-    color: '#E3F2F5' // EWC Mintcream
+    color: '#E3F2F5', // EWC Mintcream
   },
   GRAY_1: {
-    color: '#515151' // EWC Gray (Midnight)
+    color: '#515151', // EWC Gray (Midnight)
   },
   GRAY_2: {
-    color: '#636363' // EWC Gray (Dark Gray)
+    color: '#636363', // EWC Gray (Dark Gray)
   },
   GRAY_3: {
-    color: '#C2C2C2' // EWC Gray (Medium Gray)
+    color: '#C2C2C2', // EWC Gray (Medium Gray)
   },
   GRAY_4: {
-    color: '#ECECEC' // EWC Gray (Gray)
+    color: '#ECECEC', // EWC Gray (Gray)
   },
   GRAY_5: {
-    color: '#F4F4F4' // EWC Gray (Light Gray)
+    color: '#F4F4F4', // EWC Gray (Light Gray)
   },
   BLACK_1: {
-    color: '#282828' // EWC Black2 (Tints)
+    color: '#282828', // EWC Black2 (Tints)
   },
   BLACK_2: {
-    color: '#333333' // EWC BG Dark (Background – Dark)
+    color: '#333333', // EWC BG Dark (Background – Dark)
   },
   WHITE_1: {
-    color: '#FFFFFF' // EWC White
+    color: '#FFFFFF', // EWC White
   },
   WHITE_2: {
-    color: '#FBFBFB' // EWC BG Light
-  }
+    color: '#FBFBFB', // EWC BG Light
+  },
 }
 
 export const customStyleMap = { ...colorMap, ...styleMap }

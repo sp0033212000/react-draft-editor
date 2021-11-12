@@ -17,7 +17,7 @@ const App = () => {
   // 沒有用到multiple-image的正常，可以試試下面的文章ID換122
   useEffect(() => {
     fetch(
-      'http://tsmc-ewc-web-dev.cloud-interactive.com/tsmcWelfare/api/announcement/111'
+      'http://tsmc-ewc-web-dev.cloud-interactive.com/tsmcWelfare/api/announcement/121'
     )
       .then((data) => data.json())
       .then((response) => {

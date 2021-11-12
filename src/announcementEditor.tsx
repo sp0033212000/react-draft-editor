@@ -1,9 +1,9 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
-import classNames from "classnames";
-import style from "./announcementEditor.module.scss";
+import React, { useLayoutEffect, useRef, useState } from 'react'
+import classNames from 'classnames'
+import style from './announcementEditor.module.scss'
 
-import useInteractiveOutsideTargetHandler from "./hooks/useInteractiveOutsideTargetHandler";
-import { isSet } from "./utils";
+import useInteractiveOutsideTargetHandler from './hooks/useInteractiveOutsideTargetHandler'
+import { isSet } from './utils'
 
 import type {
   AnnouncementEditorComponentPropsUnity,
@@ -14,38 +14,35 @@ import type {
   FileUploader,
   useTranslationInterface,
   UseUploadFiles,
-} from ".";
+} from '.'
 
-import { ReactComponent as ArrowDown } from "./assets/icons/arrow_down.svg";
-import { ReactComponent as ArrowUp } from "./assets/icons/arrow_up.svg";
-import { ReactComponent as Trash } from "./assets/icons/trash.svg";
-import Flexbox from "./components/common/flexbox";
-import Fragment from "./components/common/fragment";
-import CEditor from "./lib/draft/component/feature/cEditor";
-import Image from "./components/feature/image";
-import MultiImage from "./components/feature/multiImage";
-import AttachmentSection from "./components/feature/attachmentSection";
+import { ReactComponent as ArrowDown } from './assets/icons/arrow_down.svg'
+import { ReactComponent as ArrowUp } from './assets/icons/arrow_up.svg'
+import { ReactComponent as Trash } from './assets/icons/trash.svg'
+import Flexbox from './components/common/flexbox'
+import Fragment from './components/common/fragment'
+import CEditor from './lib/draft/component/feature/cEditor'
+import Image from './components/feature/image'
+import MultiImage from './components/feature/multiImage'
+import AttachmentSection from './components/feature/attachmentSection'
 
 interface Props {
-  content: AnnouncementEditorContent;
-  attachment: Array<AttachmentContentData> | null;
-  attachmentChangeHandler?: (data: Array<AttachmentContentData> | null) => void;
-  readOnly?: boolean;
-  fileUploader?: FileUploader;
-  useUploadFiles?: UseUploadFiles;
-  useTranslation?: useTranslationInterface;
+  content: AnnouncementEditorContent
+  attachment: Array<AttachmentContentData> | null
+  attachmentChangeHandler?: (data: Array<AttachmentContentData> | null) => void
+  readOnly?: boolean
+  fileUploader?: FileUploader
+  useUploadFiles?: UseUploadFiles
+  useTranslation?: useTranslationInterface
   contentChangeHandler?: (
     id: string,
-    content: AnnouncementEditorDataUnity["content"]
-  ) => void;
-  moveTowardHandler?: React.MouseEventHandler<HTMLButtonElement>;
-  moveBackwardHandler?: React.MouseEventHandler<HTMLButtonElement>;
-  removeContent?: React.MouseEventHandler<HTMLButtonElement>;
-  uploadFilesErrorFeedback?: (error: {
-    title: string;
-    content: string;
-  }) => void;
-  mode?: EditorMode;
+    content: AnnouncementEditorDataUnity['content']
+  ) => void
+  moveTowardHandler?: React.MouseEventHandler<HTMLButtonElement>
+  moveBackwardHandler?: React.MouseEventHandler<HTMLButtonElement>
+  removeContent?: React.MouseEventHandler<HTMLButtonElement>
+  uploadFilesErrorFeedback?: (error: { title: string; content: string }) => void
+  mode?: EditorMode
 }
 
 const AnnouncementEditor: React.FC<Props> = ({
@@ -64,7 +61,7 @@ const AnnouncementEditor: React.FC<Props> = ({
   mode,
 }) => {
   return (
-    <div className={classNames(style["announcementEditor"])}>
+    <div className={classNames(style['announcementEditor'])}>
       {content.map((contentDetail, index, array) => {
         return (
           <AnnouncementEditorFunctionalWrapper
@@ -85,7 +82,7 @@ const AnnouncementEditor: React.FC<Props> = ({
               contentType={contentDetail.contentType}
               content={contentDetail.content}
               readOnly={readOnly}
-              onChange={(newContent: AnnouncementEditorDataUnity["content"]) =>
+              onChange={(newContent: AnnouncementEditorDataUnity['content']) =>
                 contentChangeHandler?.(contentDetail.id, newContent)
               }
               fileUploader={fileUploader}
@@ -93,7 +90,7 @@ const AnnouncementEditor: React.FC<Props> = ({
               uploadFilesErrorFeedback={uploadFilesErrorFeedback}
             />
           </AnnouncementEditorFunctionalWrapper>
-        );
+        )
       })}
       <Fragment condition={isSet(attachment)}>
         <AnnouncementEditorFunctionalWrapper
@@ -113,18 +110,18 @@ const AnnouncementEditor: React.FC<Props> = ({
         </AnnouncementEditorFunctionalWrapper>
       </Fragment>
     </div>
-  );
-};
+  )
+}
 
-export default AnnouncementEditor;
+export default AnnouncementEditor
 
 const AnnouncementEditorContentDispatchers: React.FC<
   AnnouncementEditorComponentPropsUnity & {
-    readOnly?: boolean;
+    readOnly?: boolean
   }
 > = (props) => {
   switch (props.type) {
-    case "editor":
+    case 'editor':
       return (
         <CEditor
           styleType={props.contentType}
@@ -132,8 +129,8 @@ const AnnouncementEditorContentDispatchers: React.FC<
           setEditorState={props.onChange}
           readOnly={props.readOnly}
         />
-      );
-    case "image":
+      )
+    case 'image':
       return (
         <Image
           fileUploader={props.fileUploader}
@@ -145,8 +142,8 @@ const AnnouncementEditorContentDispatchers: React.FC<
           readOnly={props.readOnly}
           uploadFilesErrorFeedback={props.uploadFilesErrorFeedback}
         />
-      );
-    case "multi-image":
+      )
+    case 'multi-image':
       return (
         <MultiImage
           fileUploader={props.fileUploader}
@@ -157,21 +154,21 @@ const AnnouncementEditorContentDispatchers: React.FC<
           readOnly={props.readOnly}
           uploadFilesErrorFeedback={props.uploadFilesErrorFeedback}
         />
-      );
+      )
     default:
-      return null;
+      return null
   }
-};
+}
 
 interface AnnouncementEditorFunctionalWrapperProps {
-  isLast?: boolean;
-  isFirst?: boolean;
-  moveTowardHandler?: React.MouseEventHandler<HTMLButtonElement>;
-  moveBackwardHandler?: React.MouseEventHandler<HTMLButtonElement>;
-  removeContent?: React.MouseEventHandler<HTMLButtonElement>;
-  index?: number;
-  id?: string;
-  disable?: boolean;
+  isLast?: boolean
+  isFirst?: boolean
+  moveTowardHandler?: React.MouseEventHandler<HTMLButtonElement>
+  moveBackwardHandler?: React.MouseEventHandler<HTMLButtonElement>
+  removeContent?: React.MouseEventHandler<HTMLButtonElement>
+  index?: number
+  id?: string
+  disable?: boolean
 }
 
 const AnnouncementEditorFunctionalWrapper: React.FC<AnnouncementEditorFunctionalWrapperProps> =
@@ -186,30 +183,30 @@ const AnnouncementEditorFunctionalWrapper: React.FC<AnnouncementEditorFunctional
     id,
     disable,
   }) => {
-    const [focusing, setFocusing] = useState<boolean>(false);
-    const ref = useRef<HTMLDivElement>(null);
+    const [focusing, setFocusing] = useState<boolean>(false)
+    const ref = useRef<HTMLDivElement>(null)
 
     useLayoutEffect(() => {
-      ref?.current?.scrollIntoView();
-    }, []);
+      ref?.current?.scrollIntoView()
+    }, [])
 
-    useInteractiveOutsideTargetHandler(ref.current, () => setFocusing(false));
+    useInteractiveOutsideTargetHandler(ref.current, () => setFocusing(false))
 
-    if (disable) return <React.Fragment>{children}</React.Fragment>;
+    if (disable) return <React.Fragment>{children}</React.Fragment>
 
     return (
       <div
         ref={ref}
         onFocus={() => setFocusing(true)}
         onClick={() => setFocusing(true)}
-        className={classNames(style["announcementEditor__functionalWrapper"])}
+        className={classNames(style['announcementEditor__functionalWrapper'])}
       >
         {children}
         <Flexbox
           condition={focusing}
-          direction={"col"}
+          direction={'col'}
           className={classNames(
-            style["announcementEditor__functionalWrapper--container"]
+            style['announcementEditor__functionalWrapper--container']
           )}
         >
           <Fragment condition={!isFirst && isSet(isFirst)}>
@@ -217,16 +214,16 @@ const AnnouncementEditorFunctionalWrapper: React.FC<AnnouncementEditorFunctional
               data-index={index}
               data-id={id}
               onClick={moveTowardHandler}
-              type={"button"}
+              type={'button'}
               className={classNames(
-                style["announcementEditor__functionalWrapper--btn"]
+                style['announcementEditor__functionalWrapper--btn']
               )}
             >
               <ArrowUp />
             </button>
             <span
               className={classNames(
-                style["announcementEditor__functionalWrapper--divider"]
+                style['announcementEditor__functionalWrapper--divider']
               )}
             />
           </Fragment>
@@ -235,30 +232,30 @@ const AnnouncementEditorFunctionalWrapper: React.FC<AnnouncementEditorFunctional
               data-index={index}
               data-id={id}
               onClick={moveBackwardHandler}
-              type={"button"}
+              type={'button'}
               className={classNames(
-                style["announcementEditor__functionalWrapper--btn"]
+                style['announcementEditor__functionalWrapper--btn']
               )}
             >
               <ArrowDown />
             </button>
             <span
               className={classNames(
-                style["announcementEditor__functionalWrapper--divider"]
+                style['announcementEditor__functionalWrapper--divider']
               )}
             />
           </Fragment>
           <button
             data-id={id}
             onClick={removeContent}
-            type={"button"}
+            type={'button'}
             className={classNames(
-              style["announcementEditor__functionalWrapper--btn"]
+              style['announcementEditor__functionalWrapper--btn']
             )}
           >
             <Trash />
           </button>
         </Flexbox>
       </div>
-    );
-  };
+    )
+  }

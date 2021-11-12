@@ -150,7 +150,7 @@ const AttachmentItem: React.FC<
   return (
     <Flexbox
       justify={'start'}
-      align={'baseline'}
+      align={'center'}
       className={classNames(style['attachmentSection__attach'])}
     >
       <Fragment condition={!readOnly}>
