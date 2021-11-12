@@ -1,3 +1,14 @@
+// Block Layer: this two block was in-charge the block level style like the html where the inherit attribute come from.
+* {
+  &:global(.draft-primary-body-block) > * {
+    color: #515151;
+  }
+
+  &:global(.draft-secondary-body-block) > * {
+    color: #909090;
+  }
+}
+
 * {
   &:global(.draft-align-left) div {
     text-align: left;
@@ -33,14 +44,6 @@
   &:global(.draft-primary-body) > * {
     font-size: 1.125rem;
     line-height: 1.75rem;
-  }
-
-  &:global(.draft-primary-body-block) > * {
-    color: #515151;
-  }
-
-  &:global(.draft-secondary-body-block) > * {
-    color: #909090;
   }
 
   @media screen and(max-width: 768px) {
