@@ -3,7 +3,7 @@ import classNames from "classnames";
 import Textarea from "react-textarea-autosize";
 import style from "./multiImage.module.scss";
 
-import { deepClone, isNotEmptyString, isNotSet, isSet } from "../../../utils";
+import { deepClone, isNotEmptyString, isSet } from "../../../utils";
 
 import Flexbox from "../../common/flexbox";
 import Image from "../../feature/image";
