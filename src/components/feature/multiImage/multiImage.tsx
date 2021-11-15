@@ -3,7 +3,7 @@ import classNames from "classnames";
 import Textarea from "react-textarea-autosize";
 import style from "./multiImage.module.scss";
 
-import { deepClone, isEmptyString, isNotSet } from "../../../utils";
+import { deepClone, isNotEmptyString, isNotSet, isSet } from "../../../utils";
 
 import Flexbox from "../../common/flexbox";
 import Image from "../../feature/image";
@@ -57,9 +57,10 @@ const MultiImage: React.FC<Props> = ({
         ...new Array(
           contentType === "twins" ? 2 : contentType === "triplet" ? 3 : 0
         ),
-      ].map((_, index, ary) => {
+      ].map((_, index) => {
         const recommendSize = contentType === "twins" ? 540 : 360;
         const itemData = data?.[index];
+
         return (
           <Flexbox
             className={classNames(style["multiImage__contentBox"])}
@@ -84,8 +85,8 @@ const MultiImage: React.FC<Props> = ({
             />
             <Fragment
               condition={
-                readOnly &&
-                (isNotSet(itemData?.title) || isEmptyString(itemData?.title))
+                !readOnly ||
+                (isSet(itemData?.title) && isNotEmptyString(itemData?.title))
               }
             >
               <Textarea
@@ -103,8 +104,8 @@ const MultiImage: React.FC<Props> = ({
             </Fragment>
             <Fragment
               condition={
-                readOnly &&
-                (isNotSet(itemData?.body) || isEmptyString(itemData?.body))
+                !readOnly ||
+                (isSet(itemData?.title) && isNotEmptyString(itemData?.title))
               }
             >
               <Textarea
