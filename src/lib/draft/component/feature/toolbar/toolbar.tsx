@@ -95,7 +95,7 @@ const Toolbar: React.FC<Props> = ({
     const y =
       selectionTop - toolbarHeight > 0
         ? selectionTop - toolbarHeight
-        : selectionTop + selectionHeight + toolbarHeight;
+        : selectionTop + selectionHeight;
 
     axisCache.current = { x, y };
     return { x, y };

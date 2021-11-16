@@ -7,6 +7,7 @@ import {
   convertFromRaw,
   DraftBlockType,
   DraftEditorCommand,
+  DraftHandleValue,
   Editor,
   EditorState,
   genKey,
@@ -23,6 +24,7 @@ import {
 import { convertEditorStateToServerData, isNotSet } from "../../../../../utils";
 import Toolbar from "../toolbar";
 import blockRenderMap from "../../../blockRenderMap";
+import PastedTextHandler from "../../../../../utils/pastedTextHandler";
 
 const DEFAULT_PRIMARY_HEADING_CONTENT = convertFromRaw({
   blocks: [
@@ -179,6 +181,20 @@ const CEditor: React.FC<Props> = ({
     return getDefaultKeyBinding(e);
   };
 
+  const pastedTextHandler = (
+    text: string,
+    html: string | undefined,
+    editorState: EditorState
+  ): DraftHandleValue => {
+    const newState = new PastedTextHandler(
+      text,
+      html,
+      editorState
+    ).getNewState();
+    setEditorState(newState);
+    return "handled";
+  };
+
   return (
     <div
       ref={containerRef}
@@ -220,7 +236,7 @@ const CEditor: React.FC<Props> = ({
             customStyleMap={customStyleMap}
             blockRenderMap={blockRenderMap}
             keyBindingFn={keyBindingFn}
-            // handlePastedText={handlePastedText}
+            handlePastedText={pastedTextHandler}
             placeholder={"請輸入內文"}
           />
         </div>
