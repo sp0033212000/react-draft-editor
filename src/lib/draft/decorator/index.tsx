@@ -16,22 +16,29 @@ const findLinkEntities: DraftDecorator["strategy"] = (
   }, callback);
 };
 
-const DraftLink: React.FC<{ contentState: ContentState; entityKey: string }> =
-  ({ contentState, entityKey, children }) => {
-    const { url } = contentState.getEntity(entityKey).getData();
+const DraftLink: React.FC<{
+  contentState: ContentState;
+  entityKey: string;
+  blockKey: string;
+  decoratedText: string;
+  start: number;
+  end: number;
+}> = ({ contentState, entityKey, children, blockKey }) => {
+  const { url } = contentState.getEntity(entityKey).getData();
+  // console.log(contentState.getBlockForKey(blockKey).getInlineStyleAt());
 
-    return (
-      <a
-        href={url}
-        className={styles["draft-link"]}
-        title={url}
-        rel={"noreferrer noopener"}
-        target={"_blank"}
-      >
-        {children}
-      </a>
-    );
-  };
+  return (
+    <a
+      href={url}
+      className={styles["draft-link"]}
+      title={url}
+      rel={"noreferrer noopener"}
+      target={"_blank"}
+    >
+      {children}
+    </a>
+  );
+};
 
 export const decorator = new CompositeDecorator([
   {

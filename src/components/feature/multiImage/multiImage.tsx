@@ -8,9 +8,8 @@ import { deepClone, isNotEmptyString, isSet } from "../../../utils";
 import Flexbox from "../../common/flexbox";
 import Image from "../../feature/image";
 import {
+  AnnouncementEditorMultiImageComponentProps,
   EditorImageContentData,
-  FileUploader,
-  UseUploadFiles,
 } from "../../../";
 import Fragment from "../../common/fragment";
 
@@ -20,16 +19,20 @@ interface Data {
   body: string;
 }
 
-interface Props {
+interface Props
+  extends Omit<
+    AnnouncementEditorMultiImageComponentProps,
+    "content" | "id" | "type"
+  > {
   data: Array<Data>;
-  onChange: (data: Array<Data>) => void;
+  // onChange: (data: Array<Data>) => void;
   readOnly?: boolean;
-  contentType: "twins" | "triplet";
-  fileUploader: FileUploader | undefined;
-  useUploadFiles: UseUploadFiles | undefined;
-  uploadFilesErrorFeedback:
-    | undefined
-    | ((error: { title: string; content: string }) => void);
+  // contentType: "twins" | "triplet";
+  // fileUploader: FileUploader | undefined;
+  // useUploadFiles: UseUploadFiles | undefined;
+  // uploadFilesErrorFeedback:
+  //   | undefined
+  //   | ((error: { title: string; content: string }) => void);
 }
 
 const MultiImage: React.FC<Props> = ({
@@ -55,25 +58,29 @@ const MultiImage: React.FC<Props> = ({
     <Flexbox className={classNames(style["multiImage"])} align={"start"}>
       {[
         ...new Array(
-          contentType === "twins" ? 2 : contentType === "triplet" ? 3 : 0
+          ["twins", "twins-thin"].includes(contentType)
+            ? 2
+            : ["triplet", "triplet-thin"].includes(contentType)
+            ? 3
+            : 0
         ),
       ].map((_, index) => {
         const recommendSize = contentType === "twins" ? 540 : 360;
         const itemData = data?.[index];
 
+        const isThinImage = /\.*-thin$/.test(contentType);
+        const aspectRatio = isThinImage ? 3 / 2 : 2 / 3;
+
         return (
           <Flexbox
             className={classNames(style["multiImage__contentBox"])}
             key={index}
-            // style={{
-            //   width: `${100 / ary.length}%`,
-            // }}
             direction={"col"}
           >
             <Image
               width={"100%"}
               recommendWidth={recommendSize}
-              recommendHeight={recommendSize * (2 / 3)}
+              recommendHeight={recommendSize * aspectRatio}
               data={itemData?.image}
               onChange={(image) => changeHandler(index, { image })}
               readOnly={readOnly}
