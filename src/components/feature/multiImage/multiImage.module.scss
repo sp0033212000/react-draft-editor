@@ -1,8 +1,12 @@
 .multiImage {
-  column-gap: 1.5rem;
+  margin-right: -1.5rem;
+
+  & > * {
+    margin-right: 1.5rem;
+  }
 
   &__contentBox {
-    flex: 1 1 0%;
+    flex: 1 1 0;
   }
 
   &__image {
@@ -15,6 +19,8 @@
     height: fit-content;
     background-color: transparent;
     resize: none;
+    flex-shrink: 0;
+    overflow-y: hidden;
 
     &:focus {
       outline: none;
@@ -39,6 +45,7 @@
 @media screen and(max-width: 768px) {
   .multiImage {
     flex-direction: column;
+    margin-right: 0;
 
     &__contentBox {
       width: 100%;
