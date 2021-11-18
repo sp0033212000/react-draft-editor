@@ -2,48 +2,20 @@ import React, { useState } from "react";
 import AnnouncementEditor, {
   AnnouncementEditorContent,
   AttachmentContentData,
+  convertFromServerData,
 } from "../../src";
 
 // style
 import "./style.scss";
 
 const App = () => {
-  const [content, setContent] = useState<AnnouncementEditorContent>([
-    {
-      type: "multi-image",
-      contentType: "triplet-thin",
-      id: "123",
-      content: [
-        {
-          body: "",
-          image: { url: "", name: "" },
-          title: "",
-        },
-        {
-          body: "",
-          image: { url: "", name: "" },
-          title: "",
-        },
-      ],
-    },
-    {
-      type: "multi-image",
-      contentType: "twins-thin",
-      id: "123",
-      content: [
-        {
-          body: "",
-          image: { url: "", name: "" },
-          title: "",
-        },
-        {
-          body: "",
-          image: { url: "", name: "" },
-          title: "",
-        },
-      ],
-    },
-  ]);
+  const [content, setContent] = useState<AnnouncementEditorContent>(
+    convertFromServerData(
+      JSON.parse(
+        '[{"id":"f1d00378-e6fc-450d-a01a-26fd3e87641a","content":{"blocks":[{"key":"2mgp0","text":"","type":"primary-heading","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}},"contentType":"primary-heading","type":"editor"},{"id":"a4cf1f5a-366c-49aa-8331-87a4779f3783","content":[{"image":{"url":"http://tsmc-ewc-admin-sit.cloud-interactive.com/file/attachments/狗_1637142333085.jpg","name":"狗.jpg"},"title":"標題\\n第二行","body":"標題\\n第二行"},{"image":{"url":"http://tsmc-ewc-admin-sit.cloud-interactive.com/file/attachments/老鼠_1637142337744.jfif","name":"老鼠.jfif"},"title":"標題","body":"標題"}],"contentType":"twins","type":"multi-image"},{"id":"76bb51ff-fa69-41d2-882d-002a40624c7d","content":[{"image":null,"title":"標題","body":"標題"},{"image":null,"title":"標題","body":"標題"},{"image":null,"title":"標題","body":"標題"}],"contentType":"triplet","type":"multi-image"}]'
+      )
+    )
+  );
   const [attachments, setAttachments] = useState<Array<AttachmentContentData>>(
     []
   );
@@ -72,126 +44,13 @@ const App = () => {
 };
 
 export default App;
-
+//
 // import React, { useState } from "react";
 // import { CEditor } from "../../src";
-// import {
-//   convertFromRaw,
-//   convertToRaw,
-//   EditorState,
-//   RawDraftContentState,
-// } from "draft-js";
-// import { decorator } from "../../src/lib/draft/decorator";
-//
-// const MOCK_DATA: RawDraftContentState = {
-//   blocks: [
-//     {
-//       key: "8oqag",
-//       text: "123123123123123",
-//       type: "primary-body",
-//       depth: 0,
-//       inlineStyleRanges: [],
-//       entityRanges: [
-//         {
-//           offset: 0,
-//           length: 15,
-//           key: 0,
-//         },
-//       ],
-//       data: {},
-//     },
-//     {
-//       key: "e1u7d",
-//       text: "",
-//       type: "primary-body",
-//       depth: 0,
-//       inlineStyleRanges: [],
-//       entityRanges: [],
-//       data: {},
-//     },
-//     {
-//       key: "6kl96",
-//       text: "qweqweqweqweqw",
-//       type: "primary-body",
-//       depth: 0,
-//       inlineStyleRanges: [
-//         {
-//           offset: 0,
-//           length: 14,
-//           style: "PRIMARY_RED_1",
-//         },
-//       ],
-//       entityRanges: [
-//         {
-//           offset: 0,
-//           length: 14,
-//           key: 1,
-//         },
-//       ],
-//       data: {},
-//     },
-//     {
-//       key: "8c320",
-//       text: "",
-//       type: "primary-body",
-//       depth: 0,
-//       inlineStyleRanges: [],
-//       entityRanges: [],
-//       data: {},
-//     },
-//     {
-//       key: "hpk6",
-//       text: "13123123123123123",
-//       type: "primary-body",
-//       depth: 0,
-//       inlineStyleRanges: [
-//         {
-//           offset: 6,
-//           length: 7,
-//           style: "PRIMARY_RED_1",
-//         },
-//       ],
-//       entityRanges: [
-//         {
-//           offset: 0,
-//           length: 17,
-//           key: 2,
-//         },
-//       ],
-//       data: {},
-//     },
-//   ],
-//   entityMap: {
-//     "0": {
-//       type: "LINK",
-//       mutability: "MUTABLE",
-//       data: {
-//         url: "http://google.com",
-//       },
-//     },
-//     "1": {
-//       type: "LINK",
-//       mutability: "MUTABLE",
-//       data: {
-//         url: "http://google.com",
-//       },
-//     },
-//     "2": {
-//       type: "LINK",
-//       mutability: "MUTABLE",
-//       data: {
-//         url: "http://google.com",
-//       },
-//     },
-//   },
-// };
+// import { EditorState } from "draft-js";
 //
 // const App = () => {
-//   const [editorState, setEditorState] = useState<EditorState | null>(
-//     EditorState.createWithContent(convertFromRaw(MOCK_DATA), decorator)
-//   );
-//
-//   console.log(editorState && convertToRaw(editorState.getCurrentContent()));
+//   const [editorState, setEditorState] = useState<EditorState | null>(null);
 //
 //   return (
 //     <CEditor
@@ -199,7 +58,6 @@ export default App;
 //       styleType={"primary-body"}
 //       editorState={editorState}
 //       setEditorState={setEditorState}
-//       readOnly
 //     />
 //   );
 // };
