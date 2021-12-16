@@ -13,9 +13,9 @@
     margin-bottom: 0;
   }
 
-  &:not(:first-child) {
-    margin-top: 1rem;
-  }
+  //&:not(:first-child) {
+  //  margin-top: 1rem;
+  //}
 
   &:not(:last-child) {
     margin-bottom: 1rem;
@@ -58,7 +58,11 @@
 
       @at-root {
         :global(.draft-forAbout) &:global(.public-DraftStyleDefault-depth0.public-DraftStyleDefault-listLTR:not(:first-child)) {
-          margin-top: 28px;
+          margin-top: 1.75rem;
+        }
+
+        :global(.draft-common) &:global(.public-DraftStyleDefault-depth0.public-DraftStyleDefault-listLTR:not(:first-child)) {
+          margin-top: 1rem;
         }
       }
 
@@ -100,7 +104,11 @@
 
     @at-root {
       :global(.draft-forAbout) &:global(.public-DraftStyleDefault-depth0.public-DraftStyleDefault-listLTR:not(:first-child)) {
-        margin-top: 28px;
+        margin-top: 1.75rem;
+      }
+
+      :global(.draft-common) &:global(.public-DraftStyleDefault-depth0.public-DraftStyleDefault-listLTR:not(:first-child)) {
+        margin-top: 1rem;
       }
     }
 

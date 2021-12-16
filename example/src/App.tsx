@@ -55,7 +55,6 @@ const App = () => {
   return (
     <CEditor
       fixedToolbar
-      listType={"forAbout"}
       styleType={"primary-body"}
       editorState={editorState}
       setEditorState={setEditorState}
