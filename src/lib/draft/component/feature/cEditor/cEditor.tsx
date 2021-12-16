@@ -109,6 +109,7 @@ const STYLE_EDITOR_STATE: Record<EditorDefaultStyleType, EditorState> = {
 
 interface Props {
   styleType: EditorDefaultStyleType;
+  listType?: "common" | "forAbout";
   editorState: EditorState | null;
   setEditorState: (editorState: EditorState) => void;
   readOnly?: boolean;
@@ -119,6 +120,7 @@ interface Props {
 
 const CEditor: React.FC<Props> = ({
   styleType,
+  listType = "common",
   editorState,
   setEditorState,
   readOnly,
@@ -199,6 +201,7 @@ const CEditor: React.FC<Props> = ({
     <div
       ref={containerRef}
       className={classNames(
+        `draft-${listType}`,
         style["cEditor"],
         containerClassName,
         styleType === "primary-body" && "draft-primary-body-block",

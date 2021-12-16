@@ -56,6 +56,12 @@
         margin-right: 0.25rem;
       }
 
+      @at-root {
+        :global(.draft-forAbout) &:global(.public-DraftStyleDefault-depth0.public-DraftStyleDefault-listLTR:not(:first-child)) {
+          margin-top: 28px;
+        }
+      }
+
       &:global(.public-DraftStyleDefault-depth0.public-DraftStyleDefault-listLTR) {
         &::before {
           content: '\2022';
@@ -91,6 +97,12 @@
   &__order > * {
     font-size: 1.125rem;
     line-height: 1.75rem;
+
+    @at-root {
+      :global(.draft-forAbout) &:global(.public-DraftStyleDefault-depth0.public-DraftStyleDefault-listLTR:not(:first-child)) {
+        margin-top: 28px;
+      }
+    }
 
     &::before {
       position: relative !important;
